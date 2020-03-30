@@ -11,7 +11,10 @@ def print_tweets(tweets, number_of_tweets):
 def print_text_from_tweets(tweets, number_of_tweets):
     for i in range(0, number_of_tweets):
         print(i)
-        pprint.pprint(tweets[i]['full_text'])
+        if "retweeted_status" in tweets[i]:
+            pprint.pprint(tweets[i]["retweeted_status"]["full_text"])
+        else:
+            pprint.pprint(tweets[i]["full_text"])
         print("\n-----------------------\n")
 
 
@@ -36,6 +39,7 @@ def main():
     filename = 'data.txt'
     tweets = get_tweets(filename)
     print_text_from_tweets(tweets, number_of_tweets)
+    #print_tweets(tweets, number_of_tweets)
 
 
 if __name__ == "__main__":
