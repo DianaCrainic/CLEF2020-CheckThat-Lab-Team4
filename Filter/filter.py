@@ -5,6 +5,7 @@ from nltk.tokenize import word_tokenize
 from autocorrect import Speller
 
 MINIMUM_NUMBER_OF_WORDS = 10
+IRRELEVANT_KEYS_FILE = "resources/keys.txt"
 NEWS_KEYWORDS_FILE = "words/news.txt"
 SWEAR_KEYWORDS_FILE = "words/swear.txt"
 TWEET_TEXT_FIELD = 'full_text'
@@ -14,7 +15,7 @@ TWEET_LANGUAGE_FIELD = 'lang'
 # tweet - json object
 # filename - name of the file which contains irrelevant keys
 def remove_irrelevant_keys(tweet):
-    with open("words/keys.txt") as keys_file:
+    with open(IRRELEVANT_KEYS_FILE) as keys_file:
         for line in keys_file:
             line = line.rstrip()
             tweet.pop(line, None)
