@@ -8,6 +8,7 @@ MINIMUM_NUMBER_OF_WORDS = 10
 IRRELEVANT_KEYS_FILE = "resources/keys.txt"
 NEWS_KEYWORDS_FILE = "words/news.txt"
 SWEAR_KEYWORDS_FILE = "words/swear.txt"
+SALES_KEYWORDS_FILE = "words/sales.txt"
 TWEET_TEXT_FIELD = 'full_text'
 TWEET_LANGUAGE_FIELD = 'lang'
 
@@ -89,6 +90,10 @@ def is_news(tweet):
 
     # check for swears keywords
     if contains_keywords(filtered_tokens, SWEAR_KEYWORDS_FILE) is True:
+        return False
+
+    # check for sales keywords
+    if contains_keywords(filtered_tokens, SALES_KEYWORDS_FILE) is True:
         return False
 
     return True
