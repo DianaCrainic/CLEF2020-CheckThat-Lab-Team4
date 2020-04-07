@@ -1,7 +1,6 @@
 # Team 4' Filtering Task - Structure
 
 1. __filter.py__ - script for tweet filtering (makes use of the [Natural Language Toolkit](https://www.nltk.org/), or __NLTK__ for short):
-    * *remove_irrelevant_keys* - removes unnecessary information from the tweet's structure;
     * *get_text_from_tweet* - extracts the actual text of the tweet;
     * *tokenizer* - transforms the tweet's text into a list of tokens;
     * *remove_stop_words* - removes the stop words from the list of tokens;
