@@ -24,23 +24,6 @@ TWEET_TAG_TEXT_FIELD = 'text'
 TWEET_LANGUAGE_FIELD = 'lang'
 
 
-# tweet - json object
-# filename - name of the file which contains irrelevant keys
-def remove_irrelevant_keys(tweet):
-    with open(IRRELEVANT_KEYS_FILE) as keys_file:
-        for line in keys_file:
-            line = line.rstrip()
-            tweet.pop(line, None)
-
-    user = {'name': tweet['user']['name'], 'location': tweet['user']['location'],
-            'verified': tweet['user']['verified'], 'id': tweet['user']['id']}
-
-    tweet.pop("user", None)
-    tweet['user'] = user
-
-    return tweet
-
-
 def get_text_from_tweet(tweet):
     if TWEET_RETWEETED_STATUS_FIELD in tweet:
         return tweet[TWEET_RETWEETED_STATUS_FIELD][TWEET_TEXT_FIELD]
