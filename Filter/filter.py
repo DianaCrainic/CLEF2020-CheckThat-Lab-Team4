@@ -1,12 +1,7 @@
-import json
-import pprint
-from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-from autocorrect import Speller
 
 MINIMUM_NUMBER_OF_WORDS = 10
 
-IRRELEVANT_KEYS_FILE = "resources/keys.txt"
 NEWS_KEYWORDS_FILE = "words/news.txt"
 SWEAR_KEYWORDS_FILE = "words/swear.txt"
 SALES_KEYWORDS_FILE = "words/sales.txt"
@@ -15,6 +10,7 @@ JOBS_KEYWORDS_FILE = "words/jobs.txt"
 NEWS_TAGS_FILE = "tags/news-tags.txt"
 SALES_TAGS_FILE = "tags/sales-tags.txt"
 JOBS_TAGS_FILE = "tags/jobs-tags.txt"
+WEATHER_TAGS_FILE = "tags/weather-tags.txt"
 
 TWEET_TEXT_FIELD = 'full_text'
 TWEET_RETWEETED_STATUS_FIELD = 'retweeted_status'
@@ -34,26 +30,6 @@ def get_text_from_tweet(tweet):
 def tokenizer(text):
     tokens = word_tokenize(text)
     return tokens
-
-
-def remove_stop_words(tokens):
-    stop_words = set(stopwords.words('english'))
-    filtered_tokens = []
-
-    for word in tokens:
-        if word not in stop_words:
-            filtered_tokens.append(word)
-
-    return filtered_tokens
-
-
-def has_spelling_errors(tokens):
-    spell = Speller(lang='en')
-    for word in tokens:
-        if spell(word) != word:
-            return True
-
-    return False
 
 
 def contains_keywords(tokens, filename):
@@ -78,9 +54,9 @@ def contains_tags(tags, filename):
     return False
 
 
-def check_for_keywords(filtered_tokens):
+def check_for_keywords(tokens):
     # check for news keywords
-    if contains_keywords(filtered_tokens, NEWS_KEYWORDS_FILE) is True:
+    if contains_keywords(tokens, NEWS_KEYWORDS_FILE) is True:
         return 0  # tweets is news
 
     array_of_keywords_files = (
@@ -90,7 +66,7 @@ def check_for_keywords(filtered_tokens):
     )
 
     for file in array_of_keywords_files:
-        if contains_keywords(filtered_tokens, file) is True:
+        if contains_keywords(tokens, file) is True:
             return 1  # tweets is not news
 
     return 2  # vague
@@ -102,7 +78,8 @@ def check_for_tags(tags):
 
     array_of_tags_files = (
         SALES_TAGS_FILE,
-        JOBS_TAGS_FILE
+        JOBS_TAGS_FILE,
+        WEATHER_TAGS_FILE
     )
 
     for file in array_of_tags_files:
@@ -124,15 +101,8 @@ def is_news(tweet):
     if len(tokens) < MINIMUM_NUMBER_OF_WORDS:
         return False
 
-    # optimisation
-    filtered_tokens = remove_stop_words(tokens)
-
-    # check for spelling errors
-    # if has_spelling_errors(filtered_tokens):
-    #     return False
-
     # check for keywords
-    keywords_checking_result = check_for_keywords(filtered_tokens)
+    keywords_checking_result = check_for_keywords(tokens)
     if keywords_checking_result == 0:
         return True
     elif keywords_checking_result == 1:
@@ -147,18 +117,3 @@ def is_news(tweet):
         return False
 
     return True
-
-
-def test():
-    with open("data.txt") as json_file:
-        tweets = json.load(json_file)
-        for i in range(0, 100):
-            if "retweeted_status" in tweets[i]:
-                pprint.pprint(tweets[i]["retweeted_status"]["full_text"])
-            else:
-                pprint.pprint(tweets[i]["full_text"])
-            print(is_news(tweets[i]))
-            print("--------------------")
-
-
-test()
