@@ -1,8 +1,10 @@
 breakingnews
 news
-Latestnews
+latestnews
 newsupdate
 newsdesk
 trendingnews
 newspaper
 instanews
+breaking
+headlines
