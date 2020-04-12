@@ -45,9 +45,9 @@ def extract_tokens(text):
 
 def get_training_data():
     training_data = []
-    with open(TRAINING_DATASET_FILE, 'r') as csvfile:
-        csvreader = csv.DictReader(csvfile)
-        for row in csvreader:
+    with open(TRAINING_DATASET_FILE, 'r') as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        for row in csv_reader:
             tokens = extract_tokens(row[CSV_TWEET_TEXT_FIELD])
             label = row[CSV_TWEET_LABEL_FIELD]
             training_data.append([tokens, label])
@@ -125,6 +125,5 @@ def is_news(tweet):
 
     training_data = get_training_data()
 
-    #return label_tweet(tokens, training_data) == 'news'
+    # return label_tweet(tokens, training_data) == 'news'
     return label_tweet(tokens, training_data)
-

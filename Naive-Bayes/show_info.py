@@ -8,12 +8,12 @@ import requests
 TWEET_TEXT_FIELD = 'full_text'
 TWEET_RETWEETED_STATUS_FIELD = 'retweeted_status'
 TWEET_ENTITIES_FIELD = 'entities'
-TWEET_HASHTAGS_FIELD = 'hashtags'
+TWEET_TAGS_FIELD = 'hashtags'
 TWEET_TAG_TEXT_FIELD = 'text'
 
 
 def print_tags(tweet):
-    tags = tweet[TWEET_ENTITIES_FIELD][TWEET_HASHTAGS_FIELD]
+    tags = tweet[TWEET_ENTITIES_FIELD][TWEET_TAGS_FIELD]
     pprint.pprint(tags)
 
 
