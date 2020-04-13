@@ -23,6 +23,5 @@ winner
 follow
 like
 dm
-retweet
 delivery
 wts

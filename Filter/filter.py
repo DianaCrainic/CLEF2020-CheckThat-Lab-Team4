@@ -6,6 +6,7 @@ NEWS_KEYWORDS_FILE = "words/news.txt"
 SWEAR_KEYWORDS_FILE = "words/swear.txt"
 SALES_KEYWORDS_FILE = "words/sales.txt"
 JOBS_KEYWORDS_FILE = "words/jobs.txt"
+WEATHER_KEYWORDS_FILE = "words/weather.txt"
 
 NEWS_TAGS_FILE = "tags/news-tags.txt"
 SALES_TAGS_FILE = "tags/sales-tags.txt"
@@ -62,7 +63,8 @@ def check_for_keywords(tokens):
     array_of_keywords_files = (
         SWEAR_KEYWORDS_FILE,
         SALES_KEYWORDS_FILE,
-        JOBS_KEYWORDS_FILE
+        JOBS_KEYWORDS_FILE,
+        WEATHER_KEYWORDS_FILE
     )
 
     for file in array_of_keywords_files:
@@ -96,10 +98,6 @@ def is_news(tweet):
 
     tweet_text = get_text_from_tweet(tweet)
     tokens = tokenizer(tweet_text.lower())
-
-    # has at least MINIMUM_NUMBER_OF_WORDS words
-    if len(tokens) < MINIMUM_NUMBER_OF_WORDS:
-        return False
 
     # check for keywords
     keywords_checking_result = check_for_keywords(tokens)
