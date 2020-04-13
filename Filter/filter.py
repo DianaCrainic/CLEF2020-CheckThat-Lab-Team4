@@ -6,6 +6,7 @@ NEWS_KEYWORDS_FILE = "words/news.txt"
 SWEAR_KEYWORDS_FILE = "words/swear.txt"
 SALES_KEYWORDS_FILE = "words/sales.txt"
 JOBS_KEYWORDS_FILE = "words/jobs.txt"
+SPAM_KEYWORDS_FILE = "words/spam.txt"
 
 NEWS_TAGS_FILE = "tags/news-tags.txt"
 SALES_TAGS_FILE = "tags/sales-tags.txt"
@@ -62,7 +63,8 @@ def check_for_keywords(tokens):
     array_of_keywords_files = (
         SWEAR_KEYWORDS_FILE,
         SALES_KEYWORDS_FILE,
-        JOBS_KEYWORDS_FILE
+        JOBS_KEYWORDS_FILE,
+        SPAM_KEYWORDS_FILE
     )
 
     for file in array_of_keywords_files:

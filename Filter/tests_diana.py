@@ -151,6 +151,7 @@ class TestKeywords(unittest.TestCase):
         # tweet is not news
         self.assertEqual(filter.check_for_keywords(tokens), 1)
 
+
     def test_not_news_tweet2(self):
         tweet_text = "@FortniteGame Use code Kingo. Happy easter guys ❤"
 
@@ -196,6 +197,20 @@ class TestKeywords(unittest.TestCase):
 
     def test_weather_tweet3(self):
         tweet_text = "A Winter Weather Advisory has been issued for our listening area from 4:00"
+
+        tokens = word_tokenize(tweet_text.lower())
+        # tweet is not news
+        self.assertEqual(filter.check_for_keywords(tokens), 1)
+
+    def test_not_news_tweet11(self):
+        tweet_text = "sell!"
+
+        tokens = word_tokenize(tweet_text.lower())
+        # tweet is not news
+        self.assertEqual(filter.check_for_keywords(tokens), 1)
+
+    def test_not_news_tweet12(self):
+        tweet_text = "Click here https://t.co/Uq9Pu30MKH"
 
         tokens = word_tokenize(tweet_text.lower())
         # tweet is not news
