@@ -1,7 +1,5 @@
 from nltk.tokenize import word_tokenize
 
-MINIMUM_NUMBER_OF_WORDS = 10
-
 NEWS_KEYWORDS_FILE = "words/news.txt"
 SWEAR_KEYWORDS_FILE = "words/swear.txt"
 SALES_KEYWORDS_FILE = "words/sales.txt"
