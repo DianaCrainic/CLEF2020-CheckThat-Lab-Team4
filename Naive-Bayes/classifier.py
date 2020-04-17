@@ -14,9 +14,8 @@ CSV_TWEET_TAGS_FIELD = "tweet_tags"
 CSV_TWEET_LABEL_FIELD = "label"
 
 TRAINING_DATASET_FILE = "data/training_dataset.csv"
-TEST_DATASET_FILE = "data/test_dataset.csv"
 
-DEFAULT_LABELS = ['news', 'weather', 'sales']
+DEFAULT_LABELS = ['news', 'weather', 'ad']
 
 
 def get_text_from_tweet(tweet):

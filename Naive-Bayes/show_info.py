@@ -2,7 +2,6 @@ import json
 import pprint
 import sys
 import classifier
-
 import requests
 
 TWEET_TEXT_FIELD = 'full_text'
@@ -39,5 +38,6 @@ if __name__ == '__main__':
         print(i)
         print_text(tweets[i])
         print_tags(tweets[i])
+        # pprint.pprint(tweets[i])
         print(classifier.is_news(tweets[i]))
         print("--------------------")
