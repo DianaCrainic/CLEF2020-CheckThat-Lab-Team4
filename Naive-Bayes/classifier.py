@@ -15,7 +15,7 @@ CSV_TWEET_LABEL_FIELD = "label"
 
 TRAINING_DATASET_FILE = "data/training_dataset.csv"
 
-DEFAULT_LABELS = ['news', 'weather', 'ad']
+DEFAULT_LABELS = ['news', 'ad', 'job', 'other']
 
 
 def get_text_from_tweet(tweet):
@@ -44,7 +44,7 @@ def extract_tokens(text):
 
 def get_training_data():
     training_data = []
-    with open(TRAINING_DATASET_FILE, 'r') as csv_file:
+    with open(TRAINING_DATASET_FILE, 'r', encoding='utf-8') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
             tokens = extract_tokens(row[CSV_TWEET_TEXT_FIELD])
@@ -117,7 +117,7 @@ def label_tweet(tokens, training_data):
 def is_news(tweet):
     # written in english
     if tweet[TWEET_LANGUAGE_FIELD] != 'en':
-        return False
+        return 'other'
 
     tweet_text = get_text_from_tweet(tweet)
     tokens = extract_tokens(tweet_text.lower())

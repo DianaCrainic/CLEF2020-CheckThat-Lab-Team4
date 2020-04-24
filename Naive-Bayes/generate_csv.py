@@ -53,5 +53,3 @@ if __name__ == '__main__':
                 text = get_text_from_tweet(tweets[i])
                 tags = ' '.join(get_tags(tweets[i]))
                 csv_writer.writerow([id, text.replace('\n', ''), tags, " "])
-
-
