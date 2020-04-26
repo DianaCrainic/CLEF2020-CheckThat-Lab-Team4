@@ -7,6 +7,9 @@ from nltk.corpus import stopwords
 TWEET_LANGUAGE_FIELD = 'lang'
 TWEET_TEXT_FIELD = 'full_text'
 TWEET_RETWEETED_STATUS_FIELD = 'retweeted_status'
+TWEET_TAGS_FIELD = 'hashtags'
+TWEET_TAG_TEXT_FIELD = 'text'
+TWEET_ENTITIES_FIELD = 'entities'
 
 CSV_TWEET_ID_FIELD = "tweet_id"
 CSV_TWEET_TEXT_FIELD = "tweet_text"
@@ -23,6 +26,13 @@ def get_text_from_tweet(tweet):
         return tweet[TWEET_RETWEETED_STATUS_FIELD][TWEET_TEXT_FIELD]
 
     return tweet[TWEET_TEXT_FIELD]
+
+
+def get_tags_from_tweet(tweet):
+    tags_list = tweet[TWEET_ENTITIES_FIELD][TWEET_TAGS_FIELD]
+    tags = [tag[TWEET_TAG_TEXT_FIELD] for tag in tags_list]
+    new_tags = [tag.lower() for tag in tags]
+    return new_tags
 
 
 def remove_stop_words(words):
@@ -49,7 +59,8 @@ def get_training_data():
         for row in csv_reader:
             tokens = extract_tokens(row[CSV_TWEET_TEXT_FIELD])
             label = row[CSV_TWEET_LABEL_FIELD]
-            training_data.append([tokens, label])
+            tags = extract_tokens(row[CSV_TWEET_TAGS_FIELD])
+            training_data.append([tokens, tags, label])
 
     return training_data
 
@@ -57,7 +68,8 @@ def get_training_data():
 def get_words(training_data):
     words = []
     for data in training_data:
-        words.extend(data[0])
+        words.extend(data[0])  # tokens
+        words.extend(data[1])  # tags
     return list(set(words))
 
 
@@ -70,9 +82,11 @@ def get_words_probabilities_by_label(training_data, label):
 
     total_count = 0
     for data in training_data:
-        if data[1] == label:
-            total_count += len(data[0])
+        if data[2] == label:
+            total_count += len(data[0]) + len(data[1])
             for word in data[0]:
+                freq[word] += 1
+            for word in data[1]:
                 freq[word] += 1
 
     probabilities = {}
@@ -87,7 +101,7 @@ def get_tweet_label_probability(training_data, label):
     total_count = 0
     for data in training_data:
         total_count += 1
-        if data[1] == label:
+        if data[2] == label:
             count += 1
 
     return count * 1.0 / total_count
@@ -121,6 +135,9 @@ def is_news(tweet):
 
     tweet_text = get_text_from_tweet(tweet)
     tokens = extract_tokens(tweet_text.lower())
+
+    tags = get_tags_from_tweet(tweet)
+    tokens.extend(tags)
 
     training_data = get_training_data()
 
