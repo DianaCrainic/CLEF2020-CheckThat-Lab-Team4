@@ -131,7 +131,7 @@ def label_tweet(tokens, training_data):
 def is_news(tweet):
     # written in english
     if tweet[TWEET_LANGUAGE_FIELD] != 'en':
-        return 'other'
+        return False
 
     tweet_text = get_text_from_tweet(tweet)
     tokens = extract_tokens(tweet_text.lower())
@@ -141,5 +141,4 @@ def is_news(tweet):
 
     training_data = get_training_data()
 
-    # return label_tweet(tokens, training_data) == 'news'
-    return label_tweet(tokens, training_data)
+    return label_tweet(tokens, training_data) == 'news'
