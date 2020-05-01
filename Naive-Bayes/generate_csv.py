@@ -3,6 +3,7 @@ import json
 import sys
 import requests
 import io
+import classifier
 
 TWEET_ID_FIELD = 'id'
 

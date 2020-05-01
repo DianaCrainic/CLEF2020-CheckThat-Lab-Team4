@@ -29,25 +29,7 @@ def print_text(tweet):
     pprint.pprint(tweet_text)
 
 
-TRAINING_DATASET_FILE = "data/training_dataset.csv"
-CSV_TWEET_LABEL_FIELD = "label"
-
-
-def get_training_data():
-    dictionary = {}
-    with open(TRAINING_DATASET_FILE, 'r', encoding='utf-8') as csv_file:
-        csv_reader = csv.DictReader(csv_file)
-        for row in csv_reader:
-            label = row[CSV_TWEET_LABEL_FIELD]
-            if label in dictionary:
-                dictionary[label] += 1
-            else:
-                dictionary[label] = 1
-
-    print(dictionary)
-
-
-if __name__ == '__main__':
+def main():
     number_of_tweets = int(sys.argv[1])
     url = "http://ip2020.herokuapp.com/all_unfiltered_tweets/" + str(number_of_tweets)
     json_content = requests.get(url).json()
@@ -60,3 +42,7 @@ if __name__ == '__main__':
         # pprint.pprint(tweets[i])
         print(classifier.is_news(tweets[i]))
         print("--------------------")
+
+
+if __name__ == '__main__':
+    main()
