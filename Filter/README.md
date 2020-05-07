@@ -10,12 +10,12 @@
     * *is_news* - prepares the tweet for verification and returns whether the tweet is `news` or not.
 2. __words__ - a directory containing text files with keywords related to different areas:
     * *jobs.txt* - contains keywords related to job advents;
-    * *sales.txt* - contains keywords related to sale announcements;
+    * *ad.txt* - contains keywords related to ads;
     * *news.txt* - contains keywords related to news;
     * *swear.txt* - contains examples of swears.
 3. __tags__ - a directory containing text files with tags related to different areas:
     * *jobs-tags.txt* - contains tags related to job advents;
-    * *sales-tags.txt* - contains tags related to sales announcements;
+    * *ad-tags.txt* - contains tags related to ads;
     * *news-tags.txt* - contains tags related to news.
 
-#### All the relevant resources from above (filter.py without *test*, words, tags and resources) were successfully integrated into Team 5's work and the final results can now be further used by the other teams.
+#### All the relevant resources from above were successfully integrated into Team 5's work and the final results can now be further used by the other teams.

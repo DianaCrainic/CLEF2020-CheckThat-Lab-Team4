@@ -3,7 +3,6 @@ import json
 import sys
 import requests
 import io
-import classifier
 
 TWEET_ID_FIELD = 'id'
 
@@ -53,4 +52,4 @@ if __name__ == '__main__':
                 list_of_id.append(id)
                 text = get_text_from_tweet(tweets[i])
                 tags = ' '.join(get_tags(tweets[i]))
-                csv_writer.writerow([id, text.replace('\n', ''), tags, " "])
+                csv_writer.writerow([id, text.replace('\n', ''), tags, ""])

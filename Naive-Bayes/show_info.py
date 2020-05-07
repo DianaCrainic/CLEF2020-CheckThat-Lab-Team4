@@ -1,4 +1,3 @@
-import csv
 import json
 import pprint
 import sys
@@ -39,7 +38,6 @@ def main():
         print(i)
         print_text(tweets[i])
         print_tags(tweets[i])
-        # pprint.pprint(tweets[i])
         print(classifier.is_news(tweets[i]))
         print("--------------------")
 
