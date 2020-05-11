@@ -1,17 +1,14 @@
 from nltk.tokenize import word_tokenize
 
-MINIMUM_NUMBER_OF_WORDS = 10
-
 NEWS_KEYWORDS_FILE = "words/news.txt"
 SWEAR_KEYWORDS_FILE = "words/swear.txt"
-SALES_KEYWORDS_FILE = "words/sales.txt"
+AD_KEYWORDS_FILE = "words/ad.txt"
 JOBS_KEYWORDS_FILE = "words/jobs.txt"
 SPAM_KEYWORDS_FILE = "words/spam.txt"
 
 NEWS_TAGS_FILE = "tags/news-tags.txt"
-SALES_TAGS_FILE = "tags/sales-tags.txt"
+AD_TAGS_FILE = "tags/ad-tags.txt"
 JOBS_TAGS_FILE = "tags/jobs-tags.txt"
-WEATHER_TAGS_FILE = "tags/weather-tags.txt"
 
 TWEET_TEXT_FIELD = 'full_text'
 TWEET_RETWEETED_STATUS_FIELD = 'retweeted_status'
@@ -62,9 +59,8 @@ def check_for_keywords(tokens):
 
     array_of_keywords_files = (
         SWEAR_KEYWORDS_FILE,
-        SALES_KEYWORDS_FILE,
-        JOBS_KEYWORDS_FILE,
-        SPAM_KEYWORDS_FILE
+        AD_KEYWORDS_FILE,
+        JOBS_KEYWORDS_FILE
     )
 
     for file in array_of_keywords_files:
@@ -79,9 +75,8 @@ def check_for_tags(tags):
         return 0  # tweet is news
 
     array_of_tags_files = (
-        SALES_TAGS_FILE,
+        AD_TAGS_FILE,
         JOBS_TAGS_FILE,
-        WEATHER_TAGS_FILE
     )
 
     for file in array_of_tags_files:
@@ -99,10 +94,6 @@ def is_news(tweet):
     tweet_text = get_text_from_tweet(tweet)
     tokens = tokenizer(tweet_text.lower())
 
-    # has at least MINIMUM_NUMBER_OF_WORDS words
-    if len(tokens) < MINIMUM_NUMBER_OF_WORDS:
-        return False
-
     # check for keywords
     keywords_checking_result = check_for_keywords(tokens)
     if keywords_checking_result == 0:
@@ -118,4 +109,4 @@ def is_news(tweet):
     elif tags_checking_result == 1:
         return False
 
-    return True
+    return False
