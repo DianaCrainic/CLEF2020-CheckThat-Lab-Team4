@@ -76,22 +76,6 @@ classes.
 Naive Bayes is naive because it assumes that features in a given measurement are independent, which is in reality never the case. This assumption is strong but extremely useful. It’s what makes this model work well with little data or data that may be mislabeled. Additional advantages of the Naive Bayes algorithm are that it’s very fast and scalable.\cite{naive_property}
 }
 
-\section{Error Analysis}
-
-\subsection{Dictionary-Based Filtering Algorithm}
-\large
-{
-\quad
-Since the algorithm labels tweets based on several dictionaries of keywords, we can say that its manner of classification is a naïve one. \textbf{Moreover, the classification is strongly dependant on the order in which each dictionary is used.} For example, if a tweet contains keywords from 2 dictionaries, in our case \textbf{A} and \textbf{B}, depending on the order in which those dictionaries are verified, the tweet can be labeled as being from both \textbf{A} and \textbf{B}. 
-}
-
-\subsection{Naive Bayes Algorithm}
-\large
-{
-\quad
-In order to work, the algorithm makes use of a sample training data pool. Because of that, \textbf{the precision of the classification is dependant on the size and variety of the sample pool.} The larger the sample pool, the better the results, but if the sample pool is lacking variety, then classification errors are still bound to occur. For example, the \textit{news} label can be assigned to tweets commenting or expressing opinions on different news.
-}
-
 \section{Results}
 
 \subsection{Testing Method}
@@ -119,6 +103,22 @@ On a population of 100 tweets from all acknowledged categories, we noticed a cor
 {
 \quad
 On a population of 100 tweets from all acknowledged categories, we noticed a correctness percentage of 64\% (out of 100 tweets, approximately 64 were classified with the right label). Another interesting result was noticed when using the algorithm to get 100 tweets related to news. In that situation, out of 100 tweets, approximately 63 were correctly labeled as \textit{news}.
+}
+
+\section{Error Analysis}
+
+\subsection{Dictionary-Based Filtering Algorithm}
+\large
+{
+\quad
+Since the algorithm labels tweets based on several dictionaries of keywords, we can say that its manner of classification is a naïve one. \textbf{Moreover, the classification is strongly dependant on the order in which each dictionary is used.} For example, if a tweet contains keywords from 2 dictionaries, in our case \textbf{A} and \textbf{B}, depending on the order in which those dictionaries are verified, the tweet can be labeled as being from both \textbf{A} and \textbf{B}. 
+}
+
+\subsection{Naive Bayes Algorithm}
+\large
+{
+\quad
+In order to work, the algorithm makes use of a sample training data pool. Because of that, \textbf{the precision of the classification is dependant on the size and variety of the sample pool.} The larger the sample pool, the better the results, but if the sample pool is lacking variety, then classification errors are still bound to occur. For example, the \textit{news} label can be assigned to tweets commenting or expressing opinions on different news.
 }
 
 \section{Conclusion}
