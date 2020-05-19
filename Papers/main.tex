@@ -1,5 +1,8 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{{figures/}}
 
 \title{Classification of Tweets into Various Categories using Naive Bayes Classification Algorithm}
 \author{Diana-Isabela \textbf{Crainic}, Ciprian \textbf{Daniș} \& Ioan \textbf{Sava}}
@@ -105,7 +108,22 @@ On a population of 100 tweets from all acknowledged categories, we noticed a cor
 On a population of 100 tweets from all acknowledged categories, we noticed a correctness percentage of 64\% (out of 100 tweets, approximately 64 were classified with the right label). Another interesting result was noticed when using the algorithm to get 100 tweets related to news. In that situation, out of 100 tweets, approximately 63 were correctly labeled as \textit{news}.
 }
 
+\clearpage
+\vspace*{\fill}
 \section{Error Analysis}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{figures/Actual_Labeling}
+    \caption{Actual Labeling}
+\end{figure}
+\vfill 
+\clearpage
+
+\newpage
+
+\clearpage
+\vspace*{\fill}
 
 \subsection{Dictionary-Based Filtering Algorithm}
 \large
@@ -114,12 +132,36 @@ On a population of 100 tweets from all acknowledged categories, we noticed a cor
 Since the algorithm labels tweets based on several dictionaries of keywords, we can say that its manner of classification is a naïve one. \textbf{Moreover, the classification is strongly dependant on the order in which each dictionary is used.} For example, if a tweet contains keywords from 2 dictionaries, in our case \textbf{A} and \textbf{B}, depending on the order in which those dictionaries are verified, the tweet can be labeled as being from both \textbf{A} and \textbf{B}. 
 }
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{figures/DictionaryBasedAlg}
+    \caption{Dictionary Based Algorithm}
+\end{figure}
+
+\vfill 
+\clearpage
+\newpage
+
+\clearpage
+\vspace*{\fill}
+
 \subsection{Naive Bayes Algorithm}
 \large
 {
 \quad
 In order to work, the algorithm makes use of a sample training data pool. Because of that, \textbf{the precision of the classification is dependant on the size and variety of the sample pool.} The larger the sample pool, the better the results, but if the sample pool is lacking variety, then classification errors are still bound to occur. For example, the \textit{news} label can be assigned to tweets commenting or expressing opinions on different news.
 }
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{figures/NaiveBayes}
+    \caption{Naive Bayes Algorithm}
+\end{figure}
+
+\vfill 
+\clearpage
+\newpage
 
 \section{Conclusion}
 \large
