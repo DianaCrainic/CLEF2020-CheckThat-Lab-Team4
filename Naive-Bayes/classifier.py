@@ -1,5 +1,6 @@
 import csv
 import operator
+import pickle
 
 from nltk import word_tokenize
 from nltk.corpus import stopwords
@@ -17,6 +18,7 @@ CSV_TWEET_TAGS_FIELD = "tweet_tags"
 CSV_TWEET_LABEL_FIELD = "label"
 
 TRAINING_DATASET_FILE = "data/training_dataset.csv"
+MODEL_FILE = "data/model.ser"
 
 DEFAULT_LABELS = ['news', 'ad', 'job', 'other']
 
@@ -53,14 +55,17 @@ def extract_tokens(text):
 
 
 def get_training_data():
-    training_data = []
-    with open(TRAINING_DATASET_FILE, 'r', encoding='utf-8') as csv_file:
-        csv_reader = csv.DictReader(csv_file)
-        for row in csv_reader:
-            tokens = extract_tokens(row[CSV_TWEET_TEXT_FIELD])
-            label = row[CSV_TWEET_LABEL_FIELD]
-            tags = extract_tokens(row[CSV_TWEET_TAGS_FIELD])
-            training_data.append([tokens, tags, label])
+    file_handler = open(MODEL_FILE, 'rb')
+    training_data = pickle.load(file_handler)
+
+    if not training_data:
+        with open(TRAINING_DATASET_FILE, 'r', encoding='utf-8') as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            for row in csv_reader:
+                tokens = extract_tokens(row[CSV_TWEET_TEXT_FIELD])
+                label = row[CSV_TWEET_LABEL_FIELD]
+                tags = extract_tokens(row[CSV_TWEET_TAGS_FIELD])
+                training_data.append([tokens, tags, label])
 
     return training_data
 
@@ -142,3 +147,10 @@ def is_news(tweet):
     training_data = get_training_data()
 
     return label_tweet(tokens, training_data) == 'news'
+
+
+def main():
+    data = get_training_data()
+    print(len(data))
+
+main()
