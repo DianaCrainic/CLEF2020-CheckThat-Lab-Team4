@@ -151,6 +151,7 @@ def is_news(tweet):
 
 def main():
     data = get_training_data()
-    print(len(data))
+    for row in data:
+        print(row)
 
 main()
