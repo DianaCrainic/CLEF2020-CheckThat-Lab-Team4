@@ -147,11 +147,3 @@ def is_news(tweet):
     training_data = get_training_data()
 
     return label_tweet(tokens, training_data) == 'news'
-
-
-def main():
-    data = get_training_data()
-    for row in data:
-        print(row)
-
-main()
